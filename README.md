@@ -31,7 +31,7 @@ AgriNest is a full-stack agri-commerce web platform designed to bridge the gap b
   - Stores contact form messages into `contact_messages` table for backend review.
 
 ---
-##✨ Future Enhancements
+## ✨ Future Enhancements
 🌿 Farmer Product Upload & Inventory Management
 Farmers will be able to upload crop listings with quantity, price, and images directly to the platform.
 
