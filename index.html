@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Farm Fresh Marketplace</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+  html, body:before {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      height: 100%;
+      width: 100%;
+ background-color: rgba(0, 0, 0, 0.6);
+      background-size: cover;
+    }
+
+    header {
+      background-color: #1c1c1c;
+      color: #fff;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: #00cc66;
+      text-decoration: none;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      margin-left: 25px;
+      font-size: 1rem;
+    }
+
+    .nav-links a:hover {
+      text-decoration: underline;
+    }
+
+    h1 {
+      text-align: center;
+      margin: 30px;
+      font-size: 2.5rem;
+      color: #1a1a1a;
+    }
+
+    .products {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 0 40px 40px;
+    }
+
+    .product {
+      background: white;
+      border-radius: 10px;
+      padding: 12px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width: 210px;
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .product:hover {
+      transform: translateY(-5px);
+    }
+
+    .product img {
+      width: 100%;
+      border-radius: 10px;
+      height: 130px;
+      object-fit: cover;
+    }
+
+    .product h3 {
+      margin: 10px 0 5px;
+      color: #2c3e50;
+      font-size: 1.1rem;
+    }
+
+    .product p {
+      margin: 4px 0;
+      color: #555;
+      font-size: 0.9rem;
+    }
+
+    .product button {
+      background: #00cc66;
+      color: white;
+      padding: 6px 12px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 0.9rem;
+    }
+
+    .product button:hover {
+      background-color: #00b359;
+    }
+
+    .cart {
+      position: fixed;
+      right: 20px;
+      top: 100px;
+      background: white;
+      border-radius: 10px;
+      padding: 15px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+      width: 280px;
+      max-height: 80vh;
+      overflow-y: auto;
+    }
+
+    .cart h2 {
+      margin-top: 0;
+      color: #1a1a1a;
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+    }
+
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 10px 0;
+      font-size: 0.95rem;
+    }
+
+    .item-controls {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .item-controls button {
+      background: #00cc66;
+      color: white;
+      border: none;
+      padding: 2px 8px;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    .item-controls button:hover {
+      background-color: ##00cc66;
+    }
+
+    .remove-btn {
+      background-color: red !important;
+    }
+
+    .cart-total {
+      font-weight: bold;
+      text-align: right;
+      margin-top: 10px;
+      color: #1a1a1a;
+    }
+
+    .place-order {
+      margin-top: 15px;
+      width: 100%;
+      background-color: #00cc66;
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 0.95rem;
+    }
+
+    .place-order:hover {
+      background-color: #00b359;
+    }
+
+    @media (max-width: 768px) {
+      .products {
+        flex-direction: column;
+        padding: 20px;
+        align-items: center;
+      }
+
+      .cart {
+        position: static;
+        width: 100%;
+        margin: 20px auto;
+        box-shadow: none;
+        max-width: 350px;
+      }
+
+      .cart-item {
+        font-size: 0.9rem;
+      }
+
+     header {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 15px 20px;
+  }
+
+      .nav-links {
+        margin-top: 10px;
+      }
+
+      .nav-links a {
+        display: inline-block;
+        margin: 5px 10px 0 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="#" class="logo">AgriNest</a>
+    <div class="nav-links">
+      <a href="newhome.html">Home</a>
+      <a href="contact.html">Contact Us</a>
+    </div>
+  </header>
+
+  <h1>Farm Fresh Marketplace</h1>
+  <div class="products" id="products"></div>
+
+  <div class="cart">
+    <h2>Your Cart</h2>
+    <div id="cart-items"></div>
+    <div class="cart-total">Total: ₹<span id="cart-total">0</span></div>
+    <button class="place-order" onclick="placeOrder()">Place Order</button>
+  </div>
+
+  <script>
+    const productsContainer = document.getElementById('products');
+    const cartItems = document.getElementById('cart-items');
+    const totalDisplay = document.getElementById('cart-total');
+    let total = 0;
+    const userId = 1; // Simulated user ID
+    const cartMap = new Map(); // cropId -> { name, price, quantity, maxQty }
+
+    async function fetchProducts() {
+      try {
+        const res = await fetch('http://localhost:5000/api/crops');
+        const data = await res.json();
+        displayProducts(data);
+      } catch (error) {
+        console.error('Error loading crops:', error);
+      }
+    }
+
+    function displayProducts(products) {
+      productsContainer.innerHTML = '';
+      products.forEach(product => {
+        const div = document.createElement('div');
+        div.className = 'product';
+        div.innerHTML = `
+          <img src="http://localhost:5000/${product.image_url}" alt="${product.crop_name}" />
+          <h3>${product.crop_name}</h3>
+          <p>Price: ₹${product.price}</p>
+          <p>Available: ${product.quantity}kg</p>
+          <p>Location: ${product.location}</p>
+          <button onclick="addToCart(${product.id}, '${product.crop_name}', ${product.price}, ${product.quantity})">Add to Cart</button>
+        `;
+        productsContainer.appendChild(div);
+      });
+    }
+
+    function addToCart(cropId, name, price, maxQty) {
+      const existing = cartMap.get(cropId);
+      if (existing) {
+        if (existing.quantity < maxQty) {
+          existing.quantity++;
+        } else {
+          alert(`${name} has reached the max limit of ${maxQty}kg`);
+          return;
+        }
+      } else {
+        cartMap.set(cropId, { name, price, quantity: 1, maxQty });
+      }
+      updateCart();
+    }
+
+    function updateCart() {
+      cartItems.innerHTML = '';
+      total = 0;
+      cartMap.forEach((item, id) => {
+        total += item.price * item.quantity;
+        const div = document.createElement('div');
+        div.className = 'cart-item';
+        div.innerHTML = `
+          <span>${item.name} (${item.quantity}kg)</span>
+          <div class="item-controls">
+            <button onclick="changeQty(${id}, -1)">-</button>
+            <button onclick="changeQty(${id}, 1)">+</button>
+            <button class="remove-btn" onclick="removeItem(${id})">x</button>
+          </div>
+        `;
+        cartItems.appendChild(div);
+      });
+      totalDisplay.innerText = total.toFixed(2);
+    }
+
+    function changeQty(cropId, delta) {
+      const item = cartMap.get(cropId);
+      if (!item) return;
+
+      item.quantity += delta;
+
+      if (item.quantity <= 0) {
+        cartMap.delete(cropId);
+      } else if (item.quantity > item.maxQty) {
+        item.quantity = item.maxQty;
+        alert(`${item.name} max quantity is ${item.maxQty}kg.`);
+      }
+
+      updateCart();
+    }
+
+    function removeItem(cropId) {
+      cartMap.delete(cropId);
+      updateCart();
+    }
+
+    function placeOrder() {
+      if (cartMap.size === 0) return alert("Cart is empty!");
+
+      // Simulated backend call
+      alert("Order placed successfully!");
+      cartMap.clear();
+      updateCart();
+    }
+
+    fetchProducts();
+  </script>
+</body>
+</html>

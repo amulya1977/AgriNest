@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory Page</title>
+    <link rel="stylesheet" href="inventory-styles.css">
+</head>
+<body>
+    <header class="header">
+        <h1>Crop Inventory</h1>
+        <button class="back-btn" onclick="goBack()">⬅ Back to Dashboard</button>
+    </header>
+    <main>
+        <section class="inventory">
+            <h2>Available Crops</h2>
+            <table id="inventoryTable">
+                <thead>
+                    <tr>
+                        <th>Crop Type</th>
+                        <th>Quantity (kg)</th>
+                        <th>Price (₹/kg)</th>
+                        <th>Location</th>
+                        <th>Image</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Dynamic rows will be populated here -->
+                </tbody>
+            </table>
+        </section>
+    </main>
+    <script src="inventory-script.js"></script>
+</body>
+</html>

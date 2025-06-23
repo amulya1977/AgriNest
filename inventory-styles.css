@@ -1,0 +1,97 @@
+/* inventory-styles.css */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f0fdf4; /* Light green background */
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #2e7d32; /* Dark green */
+  color: white;
+  padding: 1rem;
+}
+
+.back-btn {
+  background-color: #388e3c; /* Green button */
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: background-color 0.3s;
+}
+
+.back-btn:hover {
+  background-color: #2e7d32;
+}
+
+main {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+h1, h2 {
+  margin-bottom: 1rem;
+  color: #1b5e20; /* Deep green */
+}
+
+.inventory {
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+th, td {
+  text-align: left;
+  padding: 0.75rem;
+  border: 1px solid #81c784; /* Light green border */
+}
+
+th {
+  background-color: #1b5e20; /* Green header */
+  color: white;
+  font-weight: bold;
+}
+
+td {
+  background-color: #e8f5e9; /* Light green cell */
+  color: #1b5e20; /* Text green */
+}
+/* Add this to your existing CSS to handle grid display */
+.inventory-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
+  margin-top: 20px;
+  background-color: #f1f1f1;
+  border-radius: 8px;
+}
+
+.inventory-list .product {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  width: 200px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.inventory-list .product img {
+  width: 100%;
+  border-radius: 5px;
+}

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact Us - AgriNest</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body, html {
+      height: 100%;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: url('https://images.pexels.com/photos/96715/pexels-photo-96715.jpeg') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+    }
+
+    .overlay {
+      background-color: rgba(0, 0, 0, 0.6);
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      z-index: 0;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 50px;
+      background-color: rgba(0, 0, 0, 0.5);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: bold;
+      color: #00ffb3;
+      text-decoration: none;
+    }
+
+    .nav-links a {
+      color: #fff;
+      text-decoration: none;
+      margin-left: 25px;
+      font-size: 1rem;
+      font-weight: 500;
+    }
+
+    .nav-links a:hover {
+      text-decoration: underline;
+    }
+
+    .contact-content {
+      position: relative;
+      z-index: 2;
+      max-width: 450px;
+      margin: 100px auto;
+      background-color: rgba(255, 255, 255, 0.1);
+      padding: 30px;
+      border-radius: 12px;
+      
+    }
+
+    .contact-content h1 {
+      text-align: center;
+      margin-bottom: 25px;
+      font-size: 30px;
+      color: #00ffb3;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    input, textarea {
+      padding: 12px;
+      margin-bottom: 20px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+
+    button {
+      background-color: #00ffb3;
+      color: black;
+      padding: 14px;
+      border: none;
+      border-radius: 30px;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #00c491;
+      transform: scale(1.05);
+    }
+
+    .success {
+      text-align: center;
+      color: #00ffb3;
+      margin-top: 15px;
+    }
+
+    .error {
+      text-align: center;
+      color: red;
+      margin-top: 15px;
+    }
+
+    @media (max-width: 600px) {
+      header {
+        flex-direction: column;
+        padding: 15px 20px;
+        text-align: center;
+      }
+
+      .nav-links {
+        margin-top: 10px;
+      }
+
+      .nav-links a {
+        margin-left: 15px;
+        font-size: 0.9rem;
+      }
+
+      .contact-content {
+        width: 90%;
+        margin: 60px auto;
+        padding: 20px;
+      }
+
+      .contact-content h1 {
+        font-size: 24px;
+      }
+
+      input, textarea {
+        font-size: 14px;
+      }
+
+      button {
+        font-size: 16px;
+        padding: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay"></div>
+
+  <!-- Header -->
+  <header>
+    <a href="#" class="logo">AgriNest</a>
+    <div class="nav-links">
+      <a href="newhome.html">Home</a>
+      <a href="contact.html">Contact Us</a>
+    </div>
+  </header>
+
+  <div class="contact-content">
+    <h1>Contact Us</h1>
+    <form id="contactForm">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required />
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required />
+
+      <label for="message">Message:</label>
+      <textarea id="message" name="message" rows="5" required></textarea>
+
+      <button type="submit">Send Message</button>
+    </form>
+    <div id="responseMessage" class=""></div>
+  </div>
+
+  <script>
+    const form = document.getElementById("contactForm");
+    const responseMsg = document.getElementById("responseMessage");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const formData = {
+        name: form.name.value,
+        email: form.email.value,
+        message: form.message.value,
+      };
+
+      try {
+        const res = await fetch("/api/contact", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData),
+        });
+
+        const data = await res.json();
+        if (res.ok) {
+          responseMsg.textContent = data.message;
+          responseMsg.className = "success";
+          form.reset();
+        } else {
+          responseMsg.textContent = data.message;
+          responseMsg.className = "error";
+        }
+      } catch (err) {
+        responseMsg.textContent = "Something went wrong.";
+        responseMsg.className = "error";
+      }
+    });
+  </script>
+</body>
+</html>
+

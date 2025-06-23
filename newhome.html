@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Farmer - Home</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body, html {
+      height: 100%;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    /* Background Image */
+    body {
+      background-image: url('https://images.pexels.com/photos/96715/pexels-photo-96715.jpeg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      color: white;
+    }
+       .nav-links a {
+      color: #fff;
+      text-decoration: none;
+      margin-left: 25px;
+      font-size: 1rem;
+      font-weight: 500;
+    }
+
+    .nav-links a:hover {
+      text-decoration: underline;
+    }
+
+    /* Overlay for readability */
+    .overlay {
+      background-color: rgba(0, 0, 0, 0.6);
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 50px;
+      background-color: rgba(0, 0, 0, 0.5);
+      position: relative;
+      z-index: 2;
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: bold;
+      color: #00ffb3;
+      text-decoration: none;
+      letter-spacing: 1px;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      top: 50%;
+      transform: translateY(-50%);
+      padding: 0 20px;
+    }
+
+    .hero-content h1 {
+      font-size: 48px;
+      margin-bottom: 20px;
+    }
+
+    .hero-content p {
+      font-size: 20px;
+      margin-bottom: 30px;
+    }
+
+    .button {
+      background-color: #00ffb3;
+      color: black;
+      padding: 14px 30px;
+      text-decoration: none;
+      font-size: 18px;
+      border-radius: 30px;
+      font-weight: bold;
+      margin: 10px;
+      transition: all 0.3s ease;
+      border: none;
+    }
+
+    .button:hover {
+      background-color: #00c491;
+      transform: scale(1.05);
+    }
+
+    @media (max-width: 768px) {
+      .hero-content h1 {
+        font-size: 32px;
+      }
+
+      .hero-content p {
+        font-size: 16px;
+      }
+
+      .button {
+        padding: 10px 20px;
+        font-size: 16px;
+      }
+
+      header {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay"></div>
+
+ 
+ <header>
+    <a href="#" class="logo">AgriNest</a>
+    <div class="nav-links">
+      <a href="newhome.html">Home</a>
+      <a href="contact.html">Contact Us</a>
+    </div>
+  </header>
+  <div class="hero-content">
+    <h1>Welcome to AgriNest</h1>
+    <p>Bringing fresh, farm-grown produce directly from farmers to your home.</p>
+    <a href="newlogin.html" class="button">Login</a>
+    <a href="newsignup.html" class="button">Signup</a>
+    
+  </div>
+</body>
+</html>
+

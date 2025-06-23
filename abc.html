@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Placement</title>
+</head>
+<body>
+  <h1>Place an Order</h1>
+  <button id="b">Place Order</button>
+  <p>Total Orders Placed: <span id="order-count">0</span></p>
+
+  <script>
+    // Get the button and display element
+    const button = document.getElementById('b');
+    const orderCountDisplay = document.getElementById('order-count');
+
+    // Load the initial value from localStorage or set it to 0
+    let orderCount = parseInt(localStorage.getItem('orderCount')) || 0;
+    orderCountDisplay.textContent = orderCount;
+
+    // Add a click event listener to the button
+    button.addEventListener('click', () => {
+      // Increment the order count
+      orderCount += 1;
+
+      // Update the displayed value
+      orderCountDisplay.textContent = orderCount;
+
+      // Store the new value in localStorage
+      localStorage.setItem('orderCount', orderCount);
+
+      // Alert the user
+      alert('Order Placed! Total Orders: ' + orderCount);
+    });
+  </script>
+</body>
+</html>
