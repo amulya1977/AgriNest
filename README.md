@@ -31,6 +31,29 @@ AgriNest is a full-stack agri-commerce web platform designed to bridge the gap b
   - Stores contact form messages into `contact_messages` table for backend review.
 
 ---
+## 🚀 API Endpoints Summary
+
+### 🧑‍🌾 Authentication
+- `POST /api/signup` - Register a new user (farmer/consumer).
+- `POST /api/login` - Authenticate user and return role & ID.
+
+### 📬 Contact
+- `POST /api/contact` - Submit contact form (name, email, message).
+
+### 🌾 Crop Management (Farmer)
+- `POST /api/crops` - Add a new crop to the marketplace.
+- `GET /api/crops` - Fetch all available crops.
+- `GET /api/crops/:id` - Get details of a single crop.
+- `PUT /api/crops/:id` - Update a crop’s information.
+- `DELETE /api/crops/:id` - Delete a crop listing.
+
+### 🛒 Cart (Consumer)
+- `POST /api/cart` - Add a crop to the user’s cart.
+- `GET /api/cart/:userId` - Retrieve all items in a user’s cart.
+- `DELETE /api/cart/:itemId` - Remove an item from the cart.
+
+
+
 ## ✨ Future Enhancements
 🌿 Farmer Product Upload & Inventory Management
 Farmers will be able to upload crop listings with quantity, price, and images directly to the platform.
